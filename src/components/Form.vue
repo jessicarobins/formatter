@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import ParsingService from '../services/ParsingService'
+
 export default {
   name: 'test-form',
   data () {
@@ -41,8 +43,8 @@ export default {
   },
   methods: {
     submit: function () {
-      this.response = `text: ${this.text} and format: ${this.format}`
-      console.log('button clicked!')
+      const text = ParsingService.parse(this.text)
+      this.response = `text: ${text} and format: ${this.format}`
     }
   }
 }
