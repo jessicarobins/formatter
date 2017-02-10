@@ -5,6 +5,7 @@ import App from './App'
 
 import VueMaterial from 'vue-material'
 require('vue-material/dist/vue-material.css')
+require('bootstrap/dist/css/bootstrap.css')
 
 Vue.use(VueMaterial)
 

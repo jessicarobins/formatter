@@ -38,13 +38,7 @@ export default {
     }
     
     if(specDepth === 0){
-      if(parent) {
-        parent.children.push(spec)
-        spec.parent = parent
-      }
-      else {
-        json.push(spec)
-      }
+      json.push(spec)
     }
     else {
       if(depth === specDepth) {

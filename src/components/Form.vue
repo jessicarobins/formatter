@@ -1,36 +1,26 @@
 <template>
   <div>
-    <md-layout v-if="response" md-gutter md-align="center">
-      <md-layout md-flex="70">
-        <md-card>
-          <md-card-content>
-            <pre>
-              {{response}}
-            </pre>
-          </md-card-content>
-        </md-card>
-      </md-layout>
-    </md-layout>
-    <md-layout md-gutter md-align="center">
-      <md-layout md-flex="50">
-        <md-input-container>
-          <label>Textarea</label>
-          <md-textarea ref="tabbable" v-model="text"></md-textarea>
-        </md-input-container>
-        <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
-      </md-layout>
-      <md-layout md-flex="20">
+    <div v-if="response">
+      <pre>
+        {{response}}
+      </pre>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-6 offset-2">
+        <textarea ref="tabbable" rows='20' v-model="text"></textarea>
+      </div>
+      <div class="col-4">
         <md-card>
           <md-card-content>
             <h3 class="md-subheading">Javascript</h3>
             <md-radio v-model="format" id="jasmine" name="jasmine" md-value="1">Jasmine</md-radio>
           </md-card-content>
         </md-card>
-      </md-layout>
-    </md-layout>
+      </div>
+    </div>
+    <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
     
   </div>
-  
 </template>
 
 <script>
@@ -53,7 +43,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log('text is: ' + this.text)
     tabOverride.set(this.$refs.tabbable.$el)
   }
 }
@@ -61,21 +50,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+  textarea, pre {
+    width: 500px;
+  }
+  
+  .md-card {
+    width: 200px;
+  }
 </style>

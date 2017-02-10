@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <test-form>
-    </test-form>
+    <div class='container'>
+      <test-form>
+      </test-form>
+    </div>
   </div>
 </template>
 
@@ -19,5 +21,6 @@ export default {
 <style>
 #app {
   margin-top: 60px;
+  
 }
 </style>
