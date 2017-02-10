@@ -4,7 +4,8 @@ import * as _ from 'lodash'
 export default {
   parse(text) {
     const textArray = text.split('\n')
-    return this.parseLine(textArray);
+    const json = this.parseLine(textArray)
+    return json;
   },
   
   parseLine(
@@ -72,12 +73,60 @@ export default {
             
     textArray = _.tail(textArray)
         
-    this.parseLine(   
+    return this.parseLine(   
         textArray,
         json,
         parent,
         specDepth, 
-        spec,
-        parent)
+        spec)
+  },
+  
+  exportSpecs(specs) {
+    let response = ""
+        
+    specs.forEach( (spec) => {
+      response += this.exportLine(spec)
+    })
+    
+    return response;
+  },
+  
+  exportLine(spec, response="", depth=0) {
+    
+    for(let i = 0; i < depth; i++) {
+      response += "\t"
+    }
+    
+    if (spec.children) {
+      
+      response += `describe('${spec.description}', function(){\n\n`
+      
+      spec.children.forEach( (child) => {
+        this.exportLine(
+          child, 
+          response,
+          depth + 1)
+      })
+                
+    }
+    else {
+      response += `it('${spec.description}', function(){\n\n`
+      
+      for(let i = 0; i < depth; i++) {
+        response += "\t"
+      }
+      
+      response += "});\n\n"
+      return response
+    }       
+    
+    for(let i = 0; i < depth; i++) {
+      response += "\t"
+    }       
+    
+    response += "});\n\n"
+        
+    return response
+    
   }
 }

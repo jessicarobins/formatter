@@ -4,7 +4,9 @@
       <md-layout md-flex="50">
         <md-card>
           <md-card-content>
-            {{response}}
+            <pre>
+              {{response}}
+            </pre>
           </md-card-content>
         </md-card>
       </md-layout>
@@ -43,8 +45,8 @@ export default {
   },
   methods: {
     submit: function () {
-      const text = ParsingService.parse(this.text)
-      this.response = `text: ${text} and format: ${this.format}`
+      const json = ParsingService.parse(this.text)
+      this.response = ParsingService.exportSpecs(json)
     }
   }
 }
