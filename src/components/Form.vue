@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-6 offset-2">
-        <textarea ref="tabbable" rows='20' v-model="text"></textarea>
+        <textarea ref="tabbable" rows='10' v-model="text"></textarea>
       </div>
       <div class="col-4">
         <md-card>
