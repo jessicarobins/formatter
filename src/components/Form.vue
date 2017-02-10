@@ -1,13 +1,32 @@
 <template>
-  <md-layout md-align="center" md-gutter>
-    <md-layout md-flex="50">
-      <md-input-container>
-        <label>Textarea</label>
-        <md-textarea></md-textarea>
-      </md-input-container>
-      <md-button class="md-raised md-primary">Submit</md-button>
+  <div>
+    <md-layout v-if="response" md-gutter md-align="center">
+      <md-layout md-flex="50">
+        <md-card>
+          <md-card-content>
+            {{response}}
+          </md-card-content>
+        </md-card>
+      </md-layout>
     </md-layout>
-  </md-layout>
+    <md-layout md-gutter md-align="center">
+      <md-layout md-flex="50">
+        <md-input-container>
+          <label>Textarea</label>
+          <md-textarea v-model="text"></md-textarea>
+        </md-input-container>
+        <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
+      </md-layout>
+      <md-layout md-flex="20">
+        <md-card>
+          <md-card-content>
+            <h3 class="md-subheading">Javascript</h3>
+            <md-radio v-model="format" id="jasmine" name="jasmine" md-value="1">Jasmine</md-radio>
+          </md-card-content>
+        </md-card>
+      </md-layout>
+    </md-layout>
+  </div>
 </template>
 
 <script>
@@ -15,7 +34,15 @@ export default {
   name: 'test-form',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      format: '1',
+      response: '',
+      text: ''
+    }
+  },
+  methods: {
+    submit: function () {
+      this.response = `text: ${this.text} and format: ${this.format}`
+      console.log('button clicked!')
     }
   }
 }
