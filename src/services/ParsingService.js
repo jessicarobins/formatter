@@ -23,8 +23,8 @@ export default {
         
     let line = textArray[0]
     //this is where we turn spaces and tabs into -s
-    line = line.replace(/[ ]{2}/, '-')
-    line = line.replace(/\t/, '-')
+    line = _.replace(line, /[ ]{2}/g, '-')
+    line = _.replace(line, /\t/g, '-')
         
     const resultArray = line.match(regex)
     const tabs = resultArray[1]
