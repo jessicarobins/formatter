@@ -16,13 +16,15 @@
         <textarea ref="tabbable" rows='10' v-model="text"></textarea>
       </div>
       <div class="col-4">
-        <md-card>
-          <md-card-content>
-            <h3 class="md-subheading">Javascript</h3>
-            <md-radio v-model="format" id="jasmine" name="jasmine" md-value="1">Jasmine</md-radio>
-          </md-card-content>
-        </md-card>
-        <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
+        <div class="options">
+          <h3 class="md-subheading">Javascript</h3>
+          <md-radio v-model="format" id="jasmine" name="jasmine" md-value="1">Jasmine</md-radio>
+          <h3 class="md-subheading">Spacing</h3>
+          <md-radio v-model="spaces" id="tabs" name="tabs" md-value="tabs">Tabs</md-radio>
+          <md-radio v-model="spaces" id="2spaces" name="2spaces" md-value="2">2 spaces</md-radio>
+          <md-radio v-model="spaces" id="4spaces" name="4spaces" md-value="4">4 spaces</md-radio>
+          <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
+        </div>
       </div>
     </div>
     <md-snackbar md-position="top right" ref="snackbar">
@@ -39,6 +41,7 @@ export default {
   name: 'test-form',
   data () {
     return {
+      spaces: 'tabs',
       format: '1',
       response: '',
       text: ''
@@ -47,7 +50,7 @@ export default {
   methods: {
     submit: function () {
       const json = ParsingService.parse(this.text)
-      this.response = ParsingService.exportSpecs(json)
+      this.response = ParsingService.exportSpecs(json, this.spaces)
     },
     toast: function() {
       this.$refs.snackbar.open();
@@ -69,7 +72,11 @@ export default {
     width: 500px;
   }
   
-  .md-card {
+  .options {
     width: 200px;
+  }
+  
+  .md-radio {
+    display: flex;
   }
 </style>

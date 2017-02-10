@@ -2,6 +2,16 @@ import Vue from 'vue'
 import * as _ from 'lodash'
 
 export default {
+  
+  spaces(s) {
+    const a = {
+      tabs: '\t',
+      2: '  ', 
+      4: '    '
+    }
+    return a[s]
+  },
+  
   parse(text) {
     const textArray = text.split('\n')
     const json = this.parseLine(textArray)
@@ -75,19 +85,20 @@ export default {
         spec)
   },
   
-  exportSpecs(specs) {
+  exportSpecs(specs, spaces) {
     let response = "\n"
-        
+    const spaceDelimiter = this.spaces(spaces)
+    
     specs.forEach( (spec) => {
-      response += this.exportLine(spec)
+      response += this.exportLine(spec, spaceDelimiter)
     })
     
     return response;
   },
   
-  exportLine(spec, response="", depth=0) {
+  exportLine(spec, spaces, response="", depth=0) {
     
-    response += this.indentToDepth(depth)
+    response += this.indentToDepth(depth, spaces)
     
     if (spec.children.length) {
       
@@ -95,7 +106,8 @@ export default {
       
       spec.children.forEach( (child) => {
         response = this.exportLine(
-          child, 
+          child,
+          spaces,
           response,
           depth + 1)
       })
@@ -104,13 +116,13 @@ export default {
     else {
       response += `it('${spec.description}', function(){\n\n`
       
-      response += this.indentToDepth(depth)
+      response += this.indentToDepth(depth, spaces)
       
       response += "});\n\n"
       return response
     }       
     
-    response += this.indentToDepth(depth)     
+    response += this.indentToDepth(depth, spaces)     
     
     response += "});\n\n"
         
@@ -118,7 +130,7 @@ export default {
     
   },
   
-  indentToDepth(depth) {
-    return _.repeat('\t', depth);
+  indentToDepth(depth, spaces) {
+    return _.repeat(spaces, depth);
   }
 }
