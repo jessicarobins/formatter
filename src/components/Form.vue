@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div v-if="response">
-      <pre>
-        {{response}}
-      </pre>
+    <div class="row" v-if="response">
+      <div class="col-6 offset-2">
+        <pre>
+          {{response}}
+        </pre>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-6 offset-2">
@@ -16,10 +18,9 @@
             <md-radio v-model="format" id="jasmine" name="jasmine" md-value="1">Jasmine</md-radio>
           </md-card-content>
         </md-card>
+        <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
       </div>
     </div>
-    <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
-    
   </div>
 </template>
 
@@ -43,7 +44,7 @@ export default {
     }
   },
   mounted: function () {
-    tabOverride.set(this.$refs.tabbable.$el)
+    tabOverride.set(this.$refs.tabbable)
   }
 }
 </script>
