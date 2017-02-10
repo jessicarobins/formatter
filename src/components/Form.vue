@@ -15,7 +15,7 @@
       <md-layout md-flex="50">
         <md-input-container>
           <label>Textarea</label>
-          <md-textarea v-model="text"></md-textarea>
+          <md-textarea ref="tabbable" v-model="text"></md-textarea>
         </md-input-container>
         <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
       </md-layout>
@@ -28,11 +28,14 @@
         </md-card>
       </md-layout>
     </md-layout>
+    
   </div>
+  
 </template>
 
 <script>
 import ParsingService from '../services/ParsingService'
+import tabOverride from 'taboverride'
 
 export default {
   name: 'test-form',
@@ -48,6 +51,10 @@ export default {
       const json = ParsingService.parse(this.text)
       this.response = ParsingService.exportSpecs(json)
     }
+  },
+  mounted: function () {
+    console.log('text is: ' + this.text)
+    tabOverride.set(this.$refs.tabbable.$el)
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <test-form></test-form>
+    <test-form>
+    </test-form>
   </div>
 </template>
 
