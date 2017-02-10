@@ -12,6 +12,17 @@ export default {
     return a[s]
   },
   
+  language(l) {
+    const a = {
+      jasmine: {
+        describe: _.template('describe("${description}", function() {\n\n'),
+        it: _.template('it("${description}", function(){\n\n'),
+        end: '});\n\n'
+      }
+    }
+    return a[l]
+  },
+  
   parse(text) {
     const textArray = text.split('\n')
     const json = this.parseLine(textArray)
@@ -85,46 +96,48 @@ export default {
         spec)
   },
   
-  exportSpecs(specs, spaces) {
+  exportSpecs(specs, spaces, format) {
     let response = "\n"
     const spaceDelimiter = this.spaces(spaces)
+    const language = this.language(format)
     
     specs.forEach( (spec) => {
-      response += this.exportLine(spec, spaceDelimiter)
+      response += this.exportLine(spec, spaceDelimiter, language)
     })
     
     return response;
   },
   
-  exportLine(spec, spaces, response="", depth=0) {
+  exportLine(spec, spaces, language, response="", depth=0) {
     
     response += this.indentToDepth(depth, spaces)
     
     if (spec.children.length) {
       
-      response += `describe('${spec.description}', function() {\n\n`
+      response += language.describe({description: spec.description})
       
       spec.children.forEach( (child) => {
         response = this.exportLine(
           child,
           spaces,
+          language,
           response,
           depth + 1)
       })
                 
     }
     else {
-      response += `it('${spec.description}', function(){\n\n`
+      response += language.it({description: spec.description})
       
       response += this.indentToDepth(depth, spaces)
       
-      response += "});\n\n"
+      response += language.end
       return response
     }       
     
     response += this.indentToDepth(depth, spaces)     
     
-    response += "});\n\n"
+    response += language.end
         
     return response
     

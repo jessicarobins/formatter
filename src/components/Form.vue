@@ -18,7 +18,7 @@
       <div class="col-4">
         <div class="options">
           <h3 class="md-subheading">Javascript</h3>
-          <md-radio v-model="format" id="jasmine" name="jasmine" md-value="1">Jasmine</md-radio>
+          <md-radio v-model="format" id="jasmine" name="jasmine" md-value="jasmine">Jasmine</md-radio>
           <h3 class="md-subheading">Spacing</h3>
           <md-radio v-model="spaces" id="tabs" name="tabs" md-value="tabs">Tabs</md-radio>
           <md-radio v-model="spaces" id="2spaces" name="2spaces" md-value="2">2 spaces</md-radio>
@@ -42,7 +42,7 @@ export default {
   data () {
     return {
       spaces: 'tabs',
-      format: '1',
+      format: 'jasmine',
       response: '',
       text: ''
     }
@@ -50,7 +50,7 @@ export default {
   methods: {
     submit: function () {
       const json = ParsingService.parse(this.text)
-      this.response = ParsingService.exportSpecs(json, this.spaces)
+      this.response = ParsingService.exportSpecs(json, this.spaces, this.format)
     },
     toast: function() {
       this.$refs.snackbar.open();
