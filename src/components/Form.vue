@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-layout v-if="response" md-gutter md-align="center">
-      <md-layout md-flex="50">
+      <md-layout md-flex="70">
         <md-card>
           <md-card-content>
             <pre>

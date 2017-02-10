@@ -37,7 +37,7 @@ export default {
       children: []
     }
     
-    if(depth === 0){
+    if(specDepth === 0){
       if(parent) {
         parent.children.push(spec)
         spec.parent = parent
@@ -82,7 +82,7 @@ export default {
   },
   
   exportSpecs(specs) {
-    let response = ""
+    let response = "\n"
         
     specs.forEach( (spec) => {
       response += this.exportLine(spec)
@@ -93,16 +93,14 @@ export default {
   
   exportLine(spec, response="", depth=0) {
     
-    for(let i = 0; i < depth; i++) {
-      response += "\t"
-    }
+    response += this.indentToDepth(depth)
     
-    if (spec.children) {
+    if (spec.children.length) {
       
-      response += `describe('${spec.description}', function(){\n\n`
+      response += `describe('${spec.description}', function() {\n\n`
       
       spec.children.forEach( (child) => {
-        this.exportLine(
+        response = this.exportLine(
           child, 
           response,
           depth + 1)
@@ -112,21 +110,21 @@ export default {
     else {
       response += `it('${spec.description}', function(){\n\n`
       
-      for(let i = 0; i < depth; i++) {
-        response += "\t"
-      }
+      response += this.indentToDepth(depth)
       
       response += "});\n\n"
       return response
     }       
     
-    for(let i = 0; i < depth; i++) {
-      response += "\t"
-    }       
+    response += this.indentToDepth(depth)     
     
     response += "});\n\n"
         
     return response
     
+  },
+  
+  indentToDepth(depth) {
+    return _.repeat('\t', depth);
   }
 }
