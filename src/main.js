@@ -4,10 +4,13 @@ import Vue from 'vue'
 import App from './App'
 
 import VueMaterial from 'vue-material'
+import VueClipboards from 'vue2-clipboards';
+
 require('vue-material/dist/vue-material.css')
 require('bootstrap/dist/css/bootstrap.css')
 
 Vue.use(VueMaterial)
+Vue.use(VueClipboards)
 
 Vue.material.registerTheme('default', {
   primary: 'pink',

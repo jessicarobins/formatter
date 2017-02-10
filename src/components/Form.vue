@@ -6,6 +6,10 @@
           {{response}}
         </pre>
       </div>
+      <div class="col-4">
+        <md-button @success="toast" class="md-raised md-primary" v-clipboard:copy="response">Copy</md-button>
+        <md-button @click.native="clear" class="md-raised">Clear</md-button>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-6 offset-2">
@@ -21,6 +25,9 @@
         <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
       </div>
     </div>
+    <md-snackbar md-position="top right" ref="snackbar">
+      <span>Copied!</span>
+    </md-snackbar>
   </div>
 </template>
 
@@ -41,6 +48,13 @@ export default {
     submit: function () {
       const json = ParsingService.parse(this.text)
       this.response = ParsingService.exportSpecs(json)
+    },
+    toast: function() {
+      this.$refs.snackbar.open();
+    },
+    clear: function() {
+      this.response = ''
+      this.text = ''
     }
   },
   mounted: function () {
