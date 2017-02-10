@@ -6,8 +6,12 @@
 textarea[data-v-cdd75fa2], pre[data-v-cdd75fa2] {
   width: 500px;
 }
-.md-card[data-v-cdd75fa2] {
+.options[data-v-cdd75fa2] {
   width: 200px;
+}
+.md-radio[data-v-cdd75fa2] {
+  display: -ms-flexbox;
+  display: flex;
 }
 /*!
 * Vue Material v0.7.1
@@ -9333,4 +9337,4 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-/*# sourceMappingURL=app.b33bf69518ea0227ecf302795fa25243.css.map*/
+/*# sourceMappingURL=app.bde7e77964bc325e50dc7b26bb5e6f34.css.map*/
