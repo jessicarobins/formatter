@@ -23,10 +23,10 @@
           <md-whiteframe md-elevation="2">
             <h3 class="md-subheading">Format</h3>
             <h3 class="md-caption">Javascript</h3>
-            <md-radio v-model="format" id="jasmine" name="jasmine" md-value="jasmine">Jasmine</md-radio>
+            <md-radio v-model="format" id="jasmine" name="jasmine" md-value="jasmine">describe/it</md-radio>
             <h3 class="md-caption">Ruby</h3>
-            <md-radio v-model="format" id="minitest" name="minitest" md-value="minitest">Minitest</md-radio>
-            <md-radio v-model="format" id="shoulda" name="shoulda" md-value="shoulda">Shoulda</md-radio>
+            <md-radio v-model="format" id="minitest" name="minitest" md-value="minitest">describe/it</md-radio>
+            <md-radio v-model="format" id="shoulda" name="shoulda" md-value="shoulda">context/should</md-radio>
           </md-whiteframe>
           <md-whiteframe md-elevation="2">
             <h3 class="md-subheading">Spacing</h3>
@@ -60,6 +60,8 @@ export default {
   },
   methods: {
     submit: function () {
+      localStorage.setItem('ddescribe.format', this.format)
+      localStorage.setItem('ddescribe.spaces', this.spaces)
       const json = ParsingService.parse(this.text)
       this.response = ParsingService.exportSpecs(json, this.spaces, this.format)
     },
@@ -70,6 +72,10 @@ export default {
       this.response = ''
       this.text = ''
     }
+  },
+  created: function () {
+    this.format = localStorage.getItem('ddescribe.format') || 'jasmine'
+    this.spaces = localStorage.getItem('ddescribe.spaces') || 'tabs'
   },
   mounted: function () {
     tabOverride.set(this.$refs.tabbable)
@@ -82,6 +88,10 @@ export default {
   textarea, pre {
     min-width: 500px;
     width: 100%;
+  }
+  
+  pre {
+    margin: 0;
   }
   
   .options {
