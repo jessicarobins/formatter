@@ -1,24 +1,24 @@
 <template>
   <div>
     <div class="row" v-if="response">
-      <div class="col-6 offset-2">
+      <div class="col-8 offset-2">
         <pre>
           {{response}}
         </pre>
       </div>
-      <div class="col-4">
+      <div class="col-2">
         <md-button @success="toast" class="md-raised md-primary" v-clipboard:copy="response">Copy</md-button>
         <md-button @click.native="clear" class="md-raised">Clear</md-button>
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-6 offset-2">
-        <textarea ref="tabbable" rows='10' v-model="text"></textarea>
+      <div class="col-8 offset-2">
+        <textarea :placeholder="placeholder" ref="tabbable" rows='10' v-model="text"></textarea>
         <div class='text-right'>
           <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-2">
         <div class="options">
           <md-whiteframe md-elevation="2">
             <h3 class="md-subheading">Format</h3>
@@ -54,7 +54,8 @@ export default {
       spaces: 'tabs',
       format: 'jasmine',
       response: '',
-      text: ''
+      text: '',
+      placeholder: 'Type specs here\n\tAdd children by hitting tab\n'
     }
   },
   methods: {
