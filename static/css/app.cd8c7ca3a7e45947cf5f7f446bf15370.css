@@ -7,6 +7,9 @@ textarea[data-v-cdd75fa2], pre[data-v-cdd75fa2] {
   min-width: 500px;
   width: 100%;
 }
+pre[data-v-cdd75fa2] {
+  margin: 0;
+}
 .options[data-v-cdd75fa2] {
   width: 200px;
   margin-bottom: 54px;
@@ -9354,4 +9357,4 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-/*# sourceMappingURL=app.2cd5d658e88c357e5ff6cc9d5a4a859c.css.map*/
+/*# sourceMappingURL=app.cd8c7ca3a7e45947cf5f7f446bf15370.css.map*/
