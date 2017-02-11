@@ -1,21 +1,19 @@
 <template>
   <div>
-    <div class="row" v-if="response">
-      <div class="col-8 offset-2">
-        <pre>
-          {{response}}
-        </pre>
-      </div>
-      <div class="col-2">
-        <md-button @success="toast" class="md-raised md-primary" v-clipboard:copy="response">Copy</md-button>
-        <md-button @click.native="clear" class="md-raised">Clear</md-button>
-      </div>
-    </div>
     <div class="row justify-content-center">
       <div class="col-8 offset-2">
+        <div v-if="response">
+          <div class="text-right">
+            <md-button @success="toast" class="md-raised md-primary" v-clipboard:copy="response">Copy</md-button>
+          </div>
+          <pre>
+            {{response}}
+          </pre>
+        </div>
         <textarea :placeholder="placeholder" ref="tabbable" rows='10' v-model="text"></textarea>
-        <div class='text-right'>
-          <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
+        <div class='buttons'>
+          <md-button @click.native="clear">Clear All</md-button>
+          <md-button :disabled="!text" @click.native="submit" class="md-raised md-primary">Submit</md-button>
         </div>
       </div>
       <div class="col-2">
@@ -95,5 +93,10 @@ export default {
   .md-whiteframe {
     margin-bottom: 20px;
     padding: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
   }
 </style>

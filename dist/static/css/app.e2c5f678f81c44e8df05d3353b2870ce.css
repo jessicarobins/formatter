@@ -1,10 +1,11 @@
 
-#app {
-  margin-top: 60px;
+.container {
+  margin-top: 40px;
 }
 
 textarea[data-v-cdd75fa2], pre[data-v-cdd75fa2] {
-  width: 500px;
+  min-width: 500px;
+  width: 100%;
 }
 .options[data-v-cdd75fa2] {
   width: 200px;
@@ -12,6 +13,21 @@ textarea[data-v-cdd75fa2], pre[data-v-cdd75fa2] {
 .md-radio[data-v-cdd75fa2] {
   display: -ms-flexbox;
   display: flex;
+}
+.md-whiteframe[data-v-cdd75fa2] {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.buttons[data-v-cdd75fa2] {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+
+.app-header[data-v-5e9db0b8] {
+  text-align: center;
+  margin-top: 40px;
 }
 /*!
 * Vue Material v0.7.1
@@ -9337,4 +9353,4 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-/*# sourceMappingURL=app.bde7e77964bc325e50dc7b26bb5e6f34.css.map*/
+/*# sourceMappingURL=app.e2c5f678f81c44e8df05d3353b2870ce.css.map*/
