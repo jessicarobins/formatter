@@ -64,6 +64,9 @@ export default {
       localStorage.setItem('ddescribe.spaces', this.spaces)
       const json = ParsingService.parse(this.text)
       this.response = ParsingService.exportSpecs(json, this.spaces, this.format)
+      if (this.$ga) {
+        this.$ga.trackEvent('submit', 'click')
+      }
     },
     toast: function() {
       this.$refs.snackbar.open();

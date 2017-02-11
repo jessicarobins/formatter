@@ -4,13 +4,19 @@ import Vue from 'vue'
 import App from './App'
 
 import VueMaterial from 'vue-material'
-import VueClipboards from 'vue2-clipboards';
+import VueClipboards from 'vue2-clipboards'
+import VueAnalytics from 'vue-analytics'
 
 require('vue-material/dist/vue-material.css')
 require('bootstrap/dist/css/bootstrap.css')
 
 Vue.use(VueMaterial)
 Vue.use(VueClipboards)
+
+if (process.env.NODE_ENV === 'production') {
+  const id = 'UA-91800156-1'
+  Vue.use(VueAnalytics, { id })
+}
 
 Vue.material.registerTheme('default', {
   primary: 'pink',
