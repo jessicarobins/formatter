@@ -18,6 +18,16 @@ export default {
         describe: _.template('describe("${description}", function() {\n\n'),
         it: _.template('it("${description}", function(){\n\n'),
         end: '});\n\n'
+      },
+      minitest: {
+        describe: _.template('describe "${description}" do\n\n'),
+        it: _.template('it "${description}" do\n\n'),
+        end: 'end\n\n'
+      },
+      shoulda: {
+        describe: _.template('context "${description}" do\n\n'),
+        it: _.template('should "${description}" do\n\n'),
+        end: 'end\n\n'
       }
     }
     return a[l]

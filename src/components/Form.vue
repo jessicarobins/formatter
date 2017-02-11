@@ -14,16 +14,26 @@
     <div class="row justify-content-center">
       <div class="col-6 offset-2">
         <textarea ref="tabbable" rows='10' v-model="text"></textarea>
+        <div class='text-right'>
+          <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
+        </div>
       </div>
       <div class="col-4">
         <div class="options">
-          <h3 class="md-subheading">Javascript</h3>
-          <md-radio v-model="format" id="jasmine" name="jasmine" md-value="jasmine">Jasmine</md-radio>
-          <h3 class="md-subheading">Spacing</h3>
-          <md-radio v-model="spaces" id="tabs" name="tabs" md-value="tabs">Tabs</md-radio>
-          <md-radio v-model="spaces" id="2spaces" name="2spaces" md-value="2">2 spaces</md-radio>
-          <md-radio v-model="spaces" id="4spaces" name="4spaces" md-value="4">4 spaces</md-radio>
-          <md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
+          <md-whiteframe md-elevation="2">
+            <h3 class="md-subheading">Format</h3>
+            <h3 class="md-caption">Javascript</h3>
+            <md-radio v-model="format" id="jasmine" name="jasmine" md-value="jasmine">Jasmine</md-radio>
+            <h3 class="md-caption">Ruby</h3>
+            <md-radio v-model="format" id="minitest" name="minitest" md-value="minitest">Minitest</md-radio>
+            <md-radio v-model="format" id="shoulda" name="shoulda" md-value="shoulda">Shoulda</md-radio>
+          </md-whiteframe>
+          <md-whiteframe md-elevation="2">
+            <h3 class="md-subheading">Spacing</h3>
+            <md-radio v-model="spaces" id="tabs" name="tabs" md-value="tabs">Tabs</md-radio>
+            <md-radio v-model="spaces" id="2spaces" name="2spaces" md-value="2">2 spaces</md-radio>
+            <md-radio v-model="spaces" id="4spaces" name="4spaces" md-value="4">4 spaces</md-radio>
+          </md-whiteframe>
         </div>
       </div>
     </div>
@@ -69,7 +79,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   textarea, pre {
-    width: 500px;
+    min-width: 500px;
+    width: 100%;
   }
   
   .options {
@@ -78,5 +89,10 @@ export default {
   
   .md-radio {
     display: flex;
+  }
+  
+  .md-whiteframe {
+    margin-bottom: 20px;
+    padding: 20px;
   }
 </style>
