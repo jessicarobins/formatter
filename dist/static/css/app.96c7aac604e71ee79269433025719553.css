@@ -7,6 +7,9 @@ textarea[data-v-cdd75fa2], pre[data-v-cdd75fa2] {
   min-width: 500px;
   width: 100%;
 }
+textarea[data-v-cdd75fa2]:focus {
+  outline-color: #E91E63;
+}
 pre[data-v-cdd75fa2] {
   margin: 0;
 }
@@ -9357,4 +9360,4 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-/*# sourceMappingURL=app.cd8c7ca3a7e45947cf5f7f446bf15370.css.map*/
+/*# sourceMappingURL=app.96c7aac604e71ee79269433025719553.css.map*/

@@ -60,10 +60,9 @@ export default {
   },
   methods: {
     submit: function () {
-      localStorage.setItem('ddescribe.format', this.format)
-      localStorage.setItem('ddescribe.spaces', this.spaces)
       const json = ParsingService.parse(this.text)
       this.response = ParsingService.exportSpecs(json, this.spaces, this.format)
+      localStorage.removeItem('ddescribe.text')
       if (this.$ga) {
         this.$ga.trackEvent('submit', 'click')
       }
@@ -74,14 +73,33 @@ export default {
     clear: function() {
       this.response = ''
       this.text = ''
+      localStorage.removeItem('ddescribe.text')
     }
   },
   created: function () {
     this.format = localStorage.getItem('ddescribe.format') || 'jasmine'
     this.spaces = localStorage.getItem('ddescribe.spaces') || 'tabs'
+    this.text = localStorage.getItem('ddescribe.text') || ''
   },
   mounted: function () {
     tabOverride.set(this.$refs.tabbable)
+  },
+  watch: {
+    text: function(val) {
+      localStorage.setItem('ddescribe.text', val)
+    },
+    format: function(val) {
+      localStorage.setItem('ddescribe.format', val)
+      if (this.$ga) {
+        this.$ga.trackEvent('format', 'change', val)
+      }
+    },
+    spaces: function(val) {
+      localStorage.setItem('ddescribe.spaces', this.spaces)
+      if (this.$ga) {
+        this.$ga.trackEvent('spaces', 'change', val)
+      }
+    }
   }
 }
 </script>
@@ -91,6 +109,10 @@ export default {
   textarea, pre {
     min-width: 500px;
     width: 100%;
+  }
+  
+  textarea:focus {
+    outline-color: #E91E63;
   }
   
   pre {
