@@ -10,13 +10,15 @@
             {{response}}
           </pre>
         </div>
-        <textarea :placeholder="placeholder" ref="tabbable" rows='10' v-model="text"></textarea>
-        <div class='buttons'>
-          <md-button @click.native="clear">Clear All</md-button>
-          <md-button :disabled="!text" @click.native="submit" class="md-raised md-primary">Submit</md-button>
+        <div>
+          <textarea :placeholder="placeholder" ref="tabbable" rows='10' v-model="text"></textarea>
+          <div class='buttons'>
+            <md-button @click.native="clear">Clear All</md-button>
+            <md-button :disabled="!text" @click.native="submit" class="md-raised md-primary">Submit</md-button>
+          </div>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-2 align-self-end">
         <div class="options">
           <md-whiteframe md-elevation="2">
             <h3 class="md-subheading">Format</h3>
@@ -84,6 +86,7 @@ export default {
   
   .options {
     width: 200px;
+    margin-bottom: 54px;
   }
   
   .md-radio {

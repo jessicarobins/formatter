@@ -58,44 +58,49 @@ export default {
     line = _.replace(line, /\t/g, '-')
         
     const resultArray = line.match(regex)
-    const tabs = resultArray[1]
-    const description = resultArray[2]
+    let specDepth = depth;
+    let spec = previous;
     
-    const specDepth = tabs.length ? tabs.length : 0
-        
-    let spec = {
-      description: description,
-      children: []
-    }
-    
-    if(specDepth === 0){
-      json.push(spec)
-    }
-    else {
-      if(depth === specDepth) {
-        parent = previous ? previous.parent : undefined
-        spec.parent = parent
-        if (parent) {
-          parent.children.push(spec)
-        }
+    if(resultArray) {
+      const tabs = resultArray[1]
+      const description = resultArray[2]
+      
+      specDepth = tabs.length ? tabs.length : 0
+          
+      spec = {
+        description: description,
+        children: []
       }
-      else if(specDepth > depth) {
-        previous.children.push(spec)
-        spec.parent = previous
+      
+      if(specDepth === 0){
+        json.push(spec)
       }
-      // specDepth < depth
       else {
-        for(let i=0; i < (depth-specDepth); i++) {
-          previous = previous.parent
+        if(depth === specDepth) {
+          parent = previous ? previous.parent : undefined
+          spec.parent = parent
+          if (parent) {
+            parent.children.push(spec)
+          }
         }
-        parent = previous.parent
-        spec.parent = parent
-        if (parent) {
-          parent.children.push(spec)
+        else if(specDepth > depth) {
+          previous.children.push(spec)
+          spec.parent = previous
+        }
+        // specDepth < depth
+        else {
+          for(let i=0; i < (depth-specDepth); i++) {
+            previous = previous.parent
+          }
+          parent = previous.parent
+          spec.parent = parent
+          if (parent) {
+            parent.children.push(spec)
+          }
         }
       }
     }
-            
+    
     textArray = _.tail(textArray)
         
     return this.parseLine(   
